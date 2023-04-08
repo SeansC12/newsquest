@@ -26,19 +26,23 @@ export default function Signup() {
     });
 
     if (error) {
-      setError(error);
+      setError(error.message);
       return;
     }
+
+    console.log(data);
 
     // Update my MySQL database
     await fetch("/api/signup", {
       method: "PATCH",
       body: JSON.stringify({
-        user: data
+        user: data.user
       })
     })
 
-    router.push("/");
+    setError("successful")
+
+    // router.push("/");
   }
 
   return (
@@ -62,16 +66,8 @@ export default function Signup() {
               <label className="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
               <input ref={confirmPasswordRef} autoComplete="on" type="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 " required="" />
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-start">
-              </div>
-              <a href="#" className="text-sm font-medium hover:underline">Forgot password?</a>
-            </div>
-            <button onClick={() => signUpHandler(usernameRef.current.value, passwordRef.current.value, confirmPasswordRef.current.value)} type="submit" className="w-full text-white bg-[#2563eb] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign In</button>
+            <button onClick={() => signUpHandler(usernameRef.current.value, passwordRef.current.value, confirmPasswordRef.current.value)} type="submit" className="w-full text-white bg-[#2563eb] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign Up</button>
             {/* <button onClick={() => loginHandler(usernameRef.current.value, passwordRef.current.value)} type="submit" className="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm text-center"><Image src={login} /></button> */}
-            <p className="text-sm font-light text-gray-500">
-              Don’t have an account yet? <a href="/signup" className="font-medium hover:underline">Sign Up</a>
-            </p>
           </div>
         </div>
       </div>
