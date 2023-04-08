@@ -1,8 +1,12 @@
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import React, { useState } from "react";
 import Head from 'next/head'
 import '../styles/globals.css'
-import { AppProps } from 'next/app'
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }) {
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient())
+
   return (
     <>
       <Head>
@@ -14,7 +18,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
-        <title>Next.js PWA Example</title>
+        <title>EducateHacks 2023</title>
 
         <link rel="manifest" href="/manifest.json" />
         <link
@@ -32,7 +36,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#317EFB" />
       </Head>
-      <Component {...pageProps} />
+
+      <div className="bg-[#EDE1D5]">
+        <SessionContextProvider
+          supabaseClient={supabaseClient}
+          initialSession={pageProps.initialSession}
+        >
+          <Component {...pageProps} />
+        </SessionContextProvider>
+      </div>
     </>
   )
 }
