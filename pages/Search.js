@@ -1,14 +1,42 @@
-import React from 'react'
-import { useRouter } from 'next/router'
+import React, { useState, useEffect } from 'react'
+import NewsCard from '../components/NewsCard';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import NavBar from '../components/NavBar';
 
 function Search({ data }) {
-  console.log(data);
+  const supabaseClient = useSupabaseClient();
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabaseClient.auth.getUser();
+      if (user) {
+        // Get user from my own custom MySQL database
+        const res = await fetch("/api/getUserObject", {
+          method: "PATCH",
+          body: JSON.stringify({
+            id: user.id
+          })
+        });
+
+        const { data } = await res.json();
+        setUser(data);
+      }
+    }
+
+    getUser();
+  }, [])
+
   return (
-    <div>Search</div>
+    <div>
+      <NavBar user={user} />
+
+      {data.articles && data.articles.map((newsObject, key) => {
+        return <NewsCard data={newsObject} />
+      })}
+    </div>
   )
 }
-
-export default Search
 
 export async function getServerSideProps(context) {
   const NewsAPIObject = require("newsapi");
@@ -21,11 +49,13 @@ export async function getServerSideProps(context) {
     page: 1,
   })
 
-  const data = await JSON.stringify(res)
+  const data = JSON.stringify(res)
 
   return {
     props: {
-      data: data,
+      data: JSON.parse(data),
     },
   }
 }
+
+export default Search;

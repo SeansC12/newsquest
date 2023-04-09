@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import NavBar from '../components/NavBar';
 import Image from 'next/image';
 import searchIcon from "./../public/icons/search-icon.png";
+import { useRouter } from 'next/router';
 
 function Home() {
   const [user, setUser] = useState();
   const [topicSelection, setTopicSelection] = useState(0);
   const supabaseClient = useSupabaseClient();
+  const router = useRouter();
 
   // const topics = ["World", "Business", "Technology", "Health"];
   const topics = [
@@ -56,8 +58,7 @@ function Home() {
           </div>
           <div>
             <img className="rounded-xl" src={topics[topicSelection].image} />
-            <button className="w-full mt-5 border-2 border-black text-black bg-yellow-200 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Read more</button>
-
+            <button onClick={() => router.push(`/Search?q=${topics[topicSelection].name}`)} className="w-full mt-5 border-2 border-black text-black bg-yellow-200 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Read more</button>
           </div>
         </div>
       </div>
