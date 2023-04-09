@@ -1,6 +1,6 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavBar from '../components/NavBar';
 import Image from 'next/image';
 import searchIcon from "./../public/icons/search-icon.png";
@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 function Home() {
   const [user, setUser] = useState();
   const [topicSelection, setTopicSelection] = useState(0);
+  const searchBarRef = useRef();
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
 
@@ -50,7 +51,15 @@ function Home() {
             <Image src={searchIcon} width={30} className="aspect-square" />
           </div>
 
-          <h1 className="font-bold text-xl">Search for topics</h1>
+          <div>
+            <h1 className="font-bold text-xl">Search for topics</h1>
+            <div className="flex items-center justify-center flex-row gap-2">
+              <input ref={searchBarRef} className="px-3 py-1" />
+              <button onClick={() => router.push(`/Search?q=${searchBarRef.current.value}`)} className="bg-[#43c5f4] px-3 py-1 rounded-xl">Go</button>
+            </div>
+          </div>
+
+          <h1 className="font-bold text-xl">Trending topics</h1>
           <div className="flex items-center justify-center gap-2">
             {topics.map((topic, key) => {
               return <div onClick={() => setTopicSelection(key)} className={`${topicSelection !== key ? "bg-white" : "bg-yellow-200"} cursor-pointer rounded px-2 py-1`}>{topic.name}</div>
