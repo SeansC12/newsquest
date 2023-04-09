@@ -32,9 +32,10 @@ function Leaderboards({ data }) {
     <div>
       <NavBar user={user} />
       {data && data.map((person, key) => (
-        <div className="flex items-center justify-center flex-row" key={key}>
-          <div>{person.name}</div>
-          <div>{person.points}</div>
+        <div className={`flex items-center justify-between flex-row w-full ${user.name === person.name ? "font-bold" : null}`} key={key}>
+          <div className="w-20 flex items-center justify-center">{key + 1}</div>
+          <div>{person.name} {user.name === person.name ? "(YOU)" : null}</div>
+          <div className="w-20 flex items-center justify-center">{person.points}</div>
         </div>
       ))}
     </div>

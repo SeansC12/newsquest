@@ -53,7 +53,7 @@ function Home() {
 
           <div>
             <h1 className="font-bold text-xl">Search for topics</h1>
-            <div className="flex items-center justify-center flex-row gap-2">
+            <div className="flex items-center justify-center flex-row gap-2 mt-1">
               <input ref={searchBarRef} className="px-3 py-1" />
               <button onClick={() => router.push(`/Search?q=${searchBarRef.current.value}`)} className="bg-[#43c5f4] px-3 py-1 rounded-xl">Go</button>
             </div>
