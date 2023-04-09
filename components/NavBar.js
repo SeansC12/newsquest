@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react'
 import useOutsideClickAlerter from "./../hooks/useOutsideClickAlerter"
 import { useRouter } from 'next/router';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 function NavBar({ user }) {
   const userSettingsRef = useRef();
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const router = useRouter();
+  const supabaseClient = useSupabaseClient();
 
   useOutsideClickAlerter(() => {
     setIsUserMenuOpen(false)
@@ -42,7 +44,7 @@ function NavBar({ user }) {
 
             <a href="/Leaderboards" className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-200" role="menuitem" tabindex="-1" id="user-menu-item-1">Leaderboards</a>
 
-            <div onClick={() => { }} className="cursor-pointer block px-4 pt-2 pb-3 text-sm text-red-500 hover:bg-red-200" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</div>
+            <div onClick={() => { supabaseClient.auth.signOut(); router.push("/") }} className="cursor-pointer block px-4 pt-2 pb-3 text-sm text-red-500 hover:bg-red-200" role="menuitem" tabindex="-1" id="user-menu-item-2">Log out</div>
           </div>
           :
           null}

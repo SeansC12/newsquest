@@ -88,7 +88,7 @@ export const getServerSideProps = async (ctx) => {
   if (!user)
     return {
       redirect: {
-        destination: '/login',
+        destination: '/Login',
         permanent: false,
       },
     }
