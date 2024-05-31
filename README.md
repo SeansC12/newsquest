@@ -1,5 +1,5 @@
 # Newsquest
 
-by Chanel Tan, Sean Chua, Tasnuba Sukanna
+by Sean Chua
 
-Newsquest is a progressive web app we made for EducateHacks 2023. 
+Newsquest is a progressive web app made for EducateHacks 2023. 
