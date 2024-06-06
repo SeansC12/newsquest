@@ -83,7 +83,7 @@ function Home() {
               <button
                 onClick={() =>
                   router.push(
-                    `/Search?q=${searchBarRef.current.value}`
+                    `/search?q=${searchBarRef.current.value}`
                   )
                 }
                 className="bg-[#43c5f4] px-3 py-1 rounded-xl"
@@ -120,7 +120,7 @@ function Home() {
             <button
               onClick={() =>
                 router.push(
-                  `/Search?q=${topics[topicSelection].name}`
+                  `/search?q=${topics[topicSelection].name}`
                 )
               }
               className="w-full mt-5 border-2 border-black text-black bg-yellow-200 focus:ring-4 focus:outline-none font-medium rounded-xl text-sm px-5 py-2.5 text-center"
@@ -149,7 +149,7 @@ export const getServerSideProps = async (ctx) => {
   if (!user)
     return {
       redirect: {
-        destination: "/Login",
+        destination: "/login",
         permanent: false,
       },
     };

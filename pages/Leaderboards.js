@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import NavBar from "../components/NavBar";
-import { query } from "./../lib/db";
+import { query } from "../lib/db";
 
 function Leaderboards({ data }) {
   const [user, setUser] = useState();
