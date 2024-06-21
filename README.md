@@ -1,6 +1,6 @@
 # [Newsquest](https://newsquest.vercel.app/)
 
-Uploading Screen Recording 2024-06-21 at 17.56.10.mov…
+https://github.com/SeansC12/newsquest/assets/88256324/0a90b6c8-d52c-4507-a514-e56f0b0baa3f
 
 Deployed with Vercel at [www.newsquest.vercel.app](www.newsquest.vercel.app)
 
