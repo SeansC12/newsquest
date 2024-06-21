@@ -28,9 +28,9 @@ export default function Login() {
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] flex items-center justify-center flex-col">
-      <Image src={welcome} className="w-full" />
-      <div className="flex flex-col items-center justify-center px-6 pt-0 -mt-7 pb-8 w-full mx-auto md:h-screen lg:py-0">
+    <div className="w-[100vw] flex items-center justify-center flex-col">
+      <Image src={welcome} className="w-54" />
+      <div className="flex flex-col items-center justify-start px-6 pt-0 -mt-7 pb-8 w-full mx-auto lg:py-0">
         {error ? (
           <div className="text-red-500">{error}</div>
         ) : null}

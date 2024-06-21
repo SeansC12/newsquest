@@ -114,7 +114,7 @@ function Home() {
           </div>
           <div>
             <img
-              className="rounded-xl"
+              className="rounded-xl w-full sm:max-w-xl"
               src={topics[topicSelection].image}
             />
             <button
