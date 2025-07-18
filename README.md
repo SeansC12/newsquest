@@ -6,6 +6,8 @@ Deployed with Vercel at [www.newsquest.vercel.app](www.newsquest.vercel.app)
 
 Newsquest is a one-stop news site where the user can view news articles published on all major journalist websites. It uses a News API to fetch from all these different sources. It also gamifies the experience by keeping track of user points, which are incremented by reading a news article.
 
+Note: The site is down for now to save on deployment costs.
+
 # Tech Stack
 - Next.js
 - Supabase
